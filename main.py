@@ -24,11 +24,15 @@ REACH THE END BEFORE THE MAN GON GETCHU.
 ----------
 """
 
+CHOICES = """
+    ----
+    Q. QUIT
+    ____
+"""
 
-def main():
-    pass
 
-    # Display introduction
+
+def intro():
     for char in textwrap.dedent(INTRODUCTION):
         time.sleep(0.05)
         sys.stdout.write(char)
@@ -36,14 +40,31 @@ def main():
 
     time.sleep(1)
 
+def main():
+    intro()
+
+    # Variables
+    done = False
+
     # MAIN LOOP
+    while not done:
         # TODO: Check if reached END GAME
 
-        # TODO: Present the user their choices
+        # Present the user their choices
+        print(CHOICES)
+
+        user_choice = input("What do you want to do? ").lower().strip("!,.?")
+
+        if user_choice == "q":
+            done = True
+
 
         # TODO: Change the environment based on user choice, and RNG
 
         # TODO: Random event generator
+
+    # Outro
+    print("Thanks for playing the game! See you next time!")
 
 if __name__ == "__main__":
     main()
