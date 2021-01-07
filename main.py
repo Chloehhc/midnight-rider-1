@@ -26,11 +26,10 @@ REACH THE END BEFORE THE MAN GON GETCHU.
 
 CHOICES = """
     ----
+    E. Status Check
     Q. QUIT
     ____
 """
-
-
 
 def intro():
     for char in textwrap.dedent(INTRODUCTION):
@@ -46,6 +45,13 @@ def main():
     # Variables
     done = False
 
+    kms_travelled = 0      # 100 km is the end
+    agents_distance = -20  # 0 is the end (agents have caught up)
+    turns = 0
+    tofu = 3               # 3 is max
+    fuel = 50              # max is 50 L
+    hunger = 0
+
     # MAIN LOOP
     while not done:
         # TODO: Check if reached END GAME
@@ -55,9 +61,17 @@ def main():
 
         user_choice = input("What do you want to do? ").lower().strip("!,.?")
 
-        if user_choice == "q":
+        if user_choice == "e":
+            print(f"\t---Status Check---")
+            print(f"\tkm travelled: {kms_travelled}")
+            print(f"\tFuel remaining: {fuel} L")
+            print(f"\tAgents are {abs(agents_distance)} kms behind.")
+            print(f"\tYou have {tofu} tofu left.")
+            print(f"\t------------\n")
+        elif user_choice == "q":
             done = True
 
+        time.sleep(1.5)
 
         # TODO: Change the environment based on user choice, and RNG
 
