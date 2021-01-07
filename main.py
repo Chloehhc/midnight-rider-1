@@ -27,6 +27,8 @@ REACH THE END BEFORE THE MAN GON GETCHU.
 
 CHOICES = """
     ----
+    B. Drive at moderate speed.
+    C. Speed ahead at full throttle.
     D. Stop to refuel (NO FOOD AVAILABLE)
     E. Status Check
     Q. QUIT
@@ -66,13 +68,55 @@ def main():
 
         user_choice = input("What do you want to do? ").lower().strip("!,.?")
 
-        if user_choice == "d":
+        if user_choice == "b":
+            # MODERATE SPEED
+            players_distance_now = random.randrange(6, 14)
+            agents_distance_now = random.randrange(7, 15)
+
+            # Burn fuel (anywhere from 2 - 7 L)
+            fuel -= random.randrange(2, 7)
+
+            # Player distance travelled
+            kms_travelled += players_distance_now
+
+            # Agents distance traveled
+            agents_distance -= players_distance_now - agents_distance_now
+
+            # Feedback to Player
+            print()
+            print("--------Vroooooom.")
+            print(f"-------- You traveled {players_distance_now} km.")
+            print()
+
+        elif user_choice == "c":
+            # FAST SPEED
+            players_distance_now = random.randrange(10,16)
+            agents_distance_now = random.randrange(7,15)
+
+            # Burn fuel (anywhere from 5 - 10 L)
+            fuel -= random.randrange(5, 11)
+
+            # Player distance travelled
+            kms_travelled += players_distance_now
+
+            # Agents distance traveled
+            # ex.               20                      -4
+            #      = 16
+            agents_distance -= players_distance_now - agents_distance_now
+
+            # Feedback to Player
+            print()
+            print("--------ZOOOOOOOOOM.")
+            print(f"-------- You traveled {players_distance_now} km.")
+            print()
+
+        elif user_choice == "d":
             #  Refueling
             # Fill up the fuel tank
             fuel = MAX_FUEL_LEVEL
 
-            # Consider the agents coming closer
-            agents_distance += random.randrange(7,15) # agents move closer anywhere from 7 to 14
+            # Consider the agents coming closer (anywhere from 7 - 14 km)
+            agents_distance += random.randrange(7,15)
 
             # Give player feedback
             print()
